@@ -456,7 +456,7 @@ get_involved_players <- function(){
   
   # It turns out there are 2 instances in the World Cup data where a player's position
   # is missing in the lineup data, so we manually set it after checking their event data.
-  # We encounter a similar issue in the World Cup data, except this time this issue occurred
+  # We encounter a similar issue in the Euros data, except this time this issue occurred
   # for 5 players. We account for this in the code below, along with other bits of
   # data cleaning / re-formatting...
   
