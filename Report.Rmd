@@ -206,6 +206,15 @@ save(dirty_heatmaps_10_3, file = "data/dirty_heatmaps_10_3.Rdata")
 save(dirty_heatmaps_10_6, file = "data/dirty_heatmaps_10_6.Rdata")
 ```
 
+```{r, echo = FALSE, eval = FALSE}
+# zip("data/dirty_heatmaps_3_1.zip", "data/dirty_heatmaps_3_1.Rdata")
+# zip("data/dirty_heatmaps_5_1.zip", "data/dirty_heatmaps_5_1.Rdata")
+# zip("data/dirty_heatmaps_10_1.zip", "data/dirty_heatmaps_10_1.Rdata")
+# unzip("data/dirty_heatmaps_3_1.zip")
+# unzip("data/dirty_heatmaps_5_1.zip")
+# unzip("data/dirty_heatmaps_10_1.zip")
+```
+
 ```{r, echo = FALSE}
 load("data/dirty_heatmaps_3_1.Rdata")
 load("data/dirty_heatmaps_3_3.Rdata")
@@ -1596,10 +1605,6 @@ results <- CNN_final %>% evaluate(test_heats_10_3, test_positions)
 results
 ```
 
-\newpage
-
-### Teams
-
 The code below augments `allplayers_test` to include these predicted positions, for ease of comparison. We show a subset of its columns to convey what this resulting data frame looks like.
 
 ```{r, echo = FALSE}
@@ -1632,6 +1637,10 @@ allplayers_test_display <- allplayers_test %>%
 kbl(head(allplayers_test_display, 10), booktabs = T) %>%
   kable_styling(position = "center", latex_options = c("striped", "scale_down", "hold_position"))
 ```
+
+\newpage
+
+### Teams
 
 Examining the table below, there does not appear to be any clear trend between the predictability of the heat maps for each teams' players and their respective performances at the World Cup and Euros. For both competitions, our model correctly predicted the Belgian heat maps approximately 50% of the time, yet the Belgians made it much deeper in the World Cup than the Euros. The positional behaviors of the Croatians (`r 0.557 - 0.651`) and the English (`r 0.514 - 0.616`) appear to be noticeably less predictable in the World Cup than the Euros, however the Croatians were more successful in the World Cup, while the English made it further in the Euros. France was the only team that our model predicted correctly at a rate larger than $0.60$ for both competitions -- they were more predictable in the World Cup, yet they were the winners of this competition.
 
@@ -2381,7 +2390,7 @@ cf_pitch
 
 # Conclusion
 
-While we are very grateful to StatsBomb for giving the public access to this data, only having a total of 105 matches to work with obviously limited the potential of our heat map classifier; with more men's international football event data, we would be able to train our CNN on more heat maps, which would surely improve our model's understanding of the latent features of heat maps for different positions. With more heat maps, we could be even stricter with regards to the minimum number of events we require for a heat map to be included in our training and test sets; raising this lower bound would be useful if we desired to filter-out the instances of players who, after being subbed-in late in a match, are technically "playing" a position while being tasked with an entirely antithetical objective (i.e. Pjaca during the World Cup Final). The heat maps in this project were generated using every single event associated with the player of focus -- the types of these events were not taken into account. It would be fascinating to see how these different events could be incorporated into our predictions of player positions, whether that be through factoring them into the creation of the heat maps themselves, or using them alongside the heat maps we've already created. Not to mention, there is the entire temporal aspect of a football match that has gone largely ignored throughout this project; perhaps time can be considered somewhere, as this would allow us to track the progression of a team's shape and tactics throughout a match via their players' heat maps.
+While we are very grateful to StatsBomb for giving the public access to this data, only having a total of 115 matches to work with obviously limited the potential of our heat map classifier; with more men's international football event data, we would be able to train our CNN on more heat maps, which would surely improve our model's understanding of the latent features of heat maps for different positions. With more heat maps, we could be even stricter with regards to the minimum number of events we require for a heat map to be included in our training and test sets; raising this lower bound would be useful if we desired to filter-out the instances of players who, after being subbed-in late in a match, are technically "playing" a position while being tasked with an entirely antithetical objective (i.e. Pjaca during the World Cup Final). The heat maps in this project were generated using every single event associated with the player of focus -- the types of these events were not taken into account. It would be fascinating to see how these different events could be incorporated into our predictions of player positions, whether that be through factoring them into the creation of the heat maps themselves, or using them alongside the heat maps we've already created. Not to mention, there is the entire temporal aspect of a football match that has gone largely ignored throughout this project; perhaps time can be considered somewhere, as this would allow us to track the progression of a team's shape and tactics throughout a match via their players' heat maps.
 
 ***
 
